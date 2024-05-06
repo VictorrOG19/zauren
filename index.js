@@ -75,3 +75,5 @@ bot.on("interactionCreate", async inter => {
         console.error(`Um erro ocorreu:\n\n${err}`)
     }
 });
+
+bot.login(process.env.TOKEN);
