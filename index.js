@@ -5,7 +5,7 @@ const path = require("node:path");
 bot.slashCommands = new Discord.Collection();
 
 const commands = [];
-const source = path.join(__dirname, "./source");
+const source = path.join(__dirname, "./src");
 const dirs = fs.readdirSync(source);
 let countItens = {"files": 0, "dirs": 0};
 
@@ -24,6 +24,33 @@ dirs.forEach(item => {
         }
     }
 });
+
+
+/*
+CLASSES
+*/
+
+class CreateInteraction {
+    constructor(label, customId, style = Discord.ButtonStyle.Primary, emoji = "") {
+        this.label = label;
+        this.customId = customId;
+        this.style = style;
+        this.emoji = emoji;
+    }
+
+    Botao() {
+        let button = new Discord.ButtonBuilder()
+        .setLabel(this.label)
+        .setCustomId(this.customId)
+        .setStyle(this.style);
+        
+        if (this.emoji) {
+            button.setEmoji(this.emoji);
+        }
+        
+        return button;
+    }
+}
 
 bot.on("ready", async () => {
     console.log(`☑ 〜 ${bot.user.username} Pronto!\n☑ 〜 ${countItens.dirs} Diretório(s) econtrado(s).\n☑ 〜 ${countItens.files} Arquivo(s) econtrado(s)`);
