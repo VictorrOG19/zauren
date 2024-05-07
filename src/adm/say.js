@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const { Interaction } = require("../../index.js")
 
 module.exports = {
     name: "falar",
@@ -12,7 +13,9 @@ module.exports = {
     }],
 
     run: async (bot, inter) => {
-        let res = await inter.options.getString("fale");
-        await inter.editReply(res);
+        let button = new Interaction("Botão", "botao", Discord.ButtonStyle.Primary, "📢");
+    let row = new Discord.ActionRowBuilder().addComponents(button.Botao());
+        
+        await inter.editReply({ content: `Olá **${inter.user.username}**`, components: [row] });
     } 
 }

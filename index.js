@@ -77,3 +77,5 @@ bot.on("interactionCreate", async inter => {
 });
 
 bot.login(process.env.TOKEN);
+
+module.exports = { Interaction };
